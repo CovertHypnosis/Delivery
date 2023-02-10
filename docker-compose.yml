@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  delivery_app:
+    build: .
+    environment:
+      - DB_URL=jdbc:mysql://demo_db:3306/demo?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
+      - DB_USERNAME=demo_user
+      - DB_PASSWORD=demo
+      - DB_REDIS_URL=redis_db
+    ports:
+      - "8081:8081"
+    restart: on-failure
+    networks:
+      - demo-network
+networks:
+  demo-network:
+    name: demo-network

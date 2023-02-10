@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+redis:
+  host: ${DB_REDIS_URL}
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/demo}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:demo_user}
+    password: ${DB_PASSWORD:demo}
