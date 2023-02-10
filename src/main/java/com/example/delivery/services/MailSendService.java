@@ -11,13 +11,11 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 @Service
-@Log4j2
 public class MailSendService {
     public void sendSMS(String text) {
         Twilio.init(System.getenv("TWILIO_ACCOUNT_SID"), System.getenv("TWILIO_AUTH_TOKEN"));
@@ -39,7 +37,6 @@ public class MailSendService {
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             Response api = sendGrid.api(request);
-            log.info(api.getStatusCode());
         } catch (IOException ex) {
             throw new EntityNotFoundException("cant get response please check mail or endpoint");
         }
